@@ -53,7 +53,7 @@ int main(){
 		n++;									/*n  hochzälen*/
 		summe[0] = n * n;						/*n² berechnen*/
 		summe[1] += n;							/*n  aufsummieren*/
-		summe[2] += n * n;						/*n² aufsummieren*/
+		summe[2] += n * n;						/*n² aufsummieren */
 
 		printf("%3i \t %3i \t %3i \t %3i \n",n,summe[0],summe[1],summe[2]);
 	}
