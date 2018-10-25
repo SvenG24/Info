@@ -25,13 +25,27 @@ char intTOchar(int i){
 
 int stringTOint(char str[]){
 	int i;
-	int x[DIGITS+1];
+	int x = 0;
 
-	for(i=0; str[i] != '\o'; i++){
-		x[i] = charTOint(str[i]);
+	for(i=0; str[i] != '\0'; i++){
+		x = x * 10 + charTOint(str[i]);
 	}
 
-
-
-	return i;
+	return x;
 }
+
+
+void intTObinaer(int i, char str[]){
+	int x=0;
+	while(i != 0){
+		i = i % 2;
+		str[x] = intTOchar();
+		x++;
+	}
+
+}
+
+
+
+
+

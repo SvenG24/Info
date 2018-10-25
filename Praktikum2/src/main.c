@@ -10,22 +10,17 @@
 
 int main(int argc, char* argv[]){
 	/** Puffer fuer eine Zahl als Zeichenkette, mit terminierender Null 	*/
-	char puffer[DIGITS+1];
+	//char puffer[DIGITS+1];
 	char *str = "47112";
 	int x;
 	/* 1) Optionales Kommandozeilenargument verwenden.						*/
 	if (argc>1) {
 		str = argv[1];
 	}
-	x = charTOint('8');
-	printf("%i",x);
-	x = 5;
-	char c = intTOchar(x);
-	printf("%c",c);
 
 	/* 2) Zahl aus einer Zeichenkette berechnen. 							*/
-	//x = stringTOint(str);
-	//printf("Zeichenkette \"%s\" als int:%d\n",str,x);
+	x = stringTOint(str);
+	printf("Zeichenkette \"%s\" als int: %d\n",str,x);
 
 	/* 3) Zahl als Binaerzeichenkette darstellen. 							*/
 	//intTObinaer(x, puffer);
