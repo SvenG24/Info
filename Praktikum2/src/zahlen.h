@@ -14,6 +14,10 @@
  *  DIGITS lange Zeichenketten					*/
 #define DIGITS 16
 
+/** Konstant die zurück gegeben wird
+ * 	wenn ein Fehler/Problem vorliegt			*/
+#define ERROR -1
+
 /** Verwandle ein ASCII char in die entsprechende
  *  Ganzzahl und gebe diese als Ergenis zurueck.*/
 int charTOint(char c);
@@ -30,6 +34,11 @@ int stringTOint(char str[]);
  *  Ganzzahl i nach str.						*/
 void intTObinaer(int i, char str[]);
 
+/** Dreht die Zeichenkette um.
+ * 	Das was am ende stand steht jetzt am anfang */
+void revers(char str[]);
 
+/** Invertiert die binaere Zeichenkette			*/
+void invert(char str[]);
 
 #endif /* ZAHLEN_H_ */
