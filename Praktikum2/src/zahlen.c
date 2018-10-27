@@ -11,7 +11,7 @@
 int charTOint(char c) {
 	int i;
 
-	if (c <= '9' && c >= '0') {
+	if (c <= '9' && c >= '0') {				// Überprüfen ob die Eingabe gültig ist {'0','1',...,'9'}
 		i = c - '0';
 	} else {
 		printf("ERROR: Ungueltiges Zeichen(char) -- '%c' -- !\n",c);
@@ -28,11 +28,11 @@ int charTOint(char c) {
 char intTOchar(int i) {
 	char c;
 
-	if (i <= 15 && i >= 0) {
+	if (i <= 15 && i >= 0) {				// Überprüfen ob die Eingabe gültig ist {0,1,...,15}
 		c = i + '0';
 	} else {
 		printf("ERROR: Ungueltige Ganz Zahl(int) -- %d -- !\n",i);
-		return '0';
+		return 0;
 	}
 
 	return c;
@@ -49,7 +49,7 @@ int stringTOint(char str[]) {
 		for (i = 1; str[i] != '\0' && i < DIGITS; i++) {
 			a = charTOint(str[i]);
 			if (a == ERROR) {
-				return ERROR;
+				return 0;
 			}
 			x = x * 10 + a;
 		}
@@ -58,15 +58,20 @@ int stringTOint(char str[]) {
 		for (i = 0; str[i] != '\0' && i < DIGITS; i++) {
 			a = charTOint(str[i]);
 			if (a == ERROR) {
-				return ERROR;
+				return 0;
 			}
 			x = x * 10 + a;
 		}
 	}
 
-	if(i >= DIGITS){
+	if(i >= DIGITS){						// Überprüfen ob die Eingabe nicht zu lang ist
 		printf("ERROR: Die Zeichenkette ist zu lang!!\n");
-		return ERROR;
+		return 0;
+	}
+	if(x > 32767 || x < -32768) {	// Überprüfen ob die Zahl zu groß ist
+		printf("ERROR: Die eingegebene Zahl ist zu groß -- %i --\n"
+			   "       Bitte eine Zahl zwischen -32768 bis 32767 eingeben\n\n",x);
+		return 0;
 	}
 
 	return x;
@@ -75,7 +80,7 @@ int stringTOint(char str[]) {
 
 
 
-
+/*
 void revers(char str[]) {
 	int i=0, x=0;
 	char strReverse[DIGITS+1];
@@ -111,31 +116,37 @@ void invert(char str[]) {
 	}
 }
 
-
+*/
 
 
 
 void intTObinaer(int i, char str[]) {
-	int x = 0;
-	int rest = 0;
+	int x, rest;
 
 	if(i < 0) {									//Für Negative Zahlen
 		i *= -1;
 		i--;
-		for(x=0; x < DIGITS; x++) {
+		for(x=DIGITS-1; x >= 0; x--) {
 			if(i != 0) {
 				rest = i % 2;
 				i = i / 2;
-				str[x] = intTOchar(rest);
-			} else {
-				str[x] = '0';
-			}
-		}
-		str[16] = '\0';
 
-		invert(str);
+				if(rest == 1) {
+					rest = 0;
+				} else if(rest == 0) {
+					rest = 1;
+				}
+
+				str[x] = intTOchar(rest);
+			} else {
+				str[x] = '1';
+			}
+		}
+		str[DIGITS] = '\0';
+
+		//invert(str);
 	} else {									//Für Positive Zahlen
-		for(x=0; x < DIGITS; x++) {
+		for(x=DIGITS-1; x >= 0; x--) {
 			if(i != 0) {
 				rest = i % 2;
 				i = i / 2;
@@ -144,10 +155,10 @@ void intTObinaer(int i, char str[]) {
 				str[x] = '0';
 			}
 		}
-		str[16] = '\0';
+		str[DIGITS] = '\0';
 	}
 
-	revers(str);
+	//revers(str);
 }
 
 

@@ -36,9 +36,9 @@ void intTObinaer(int i, char str[]);
 
 /** Dreht die Zeichenkette um.
  * 	Das was am ende stand steht jetzt am anfang */
-void revers(char str[]);
+//void revers(char str[]);
 
 /** Invertiert die binaere Zeichenkette			*/
-void invert(char str[]);
+//void invert(char str[]);
 
 #endif /* ZAHLEN_H_ */
