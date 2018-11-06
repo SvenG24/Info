@@ -7,6 +7,7 @@
 
 #include "zahlen.h"
 #include <stdio.h>
+#include <limits.h>
 
 int charTOint(char c) {
 	int i;
@@ -15,7 +16,7 @@ int charTOint(char c) {
 		i = c - '0';
 	} else {
 		printf("ERROR: Ungueltiges Zeichen(char) -- '%c' -- !\n",c);
-		return ERROR;
+		return 0;
 	}
 
 	return i;
@@ -32,7 +33,7 @@ char intTOchar(int i) {
 		c = i + '0';
 	} else {
 		printf("ERROR: Ungueltige Ganz Zahl(int) -- %d -- !\n",i);
-		return 0;
+		return -1;
 	}
 
 	return c;
@@ -48,17 +49,28 @@ int stringTOint(char str[]) {
 	if (str[0] == '-') {					//Prüfen ob die Zahl negativ ist
 		for (i = 1; str[i] != '\0' && i < DIGITS; i++) {
 			a = charTOint(str[i]);
-			if (a == ERROR) {
+			if (a == -1) {
 				return 0;
 			}
+
+
+			if(((long)(x * 10 + a))>=INT_MAX) {
+				printf("ERROR: Integer overflow!!!");
+			}
 			x = x * 10 + a;
+
 		}
-		x = x * (-1);
+		x *= (-1);
 	} else {								//sonst ist sie positiv
 		for (i = 0; str[i] != '\0' && i < DIGITS; i++) {
 			a = charTOint(str[i]);
-			if (a == ERROR) {
+			if (a == -1) {
 				return 0;
+			}
+
+
+			if(((long)x * 10 + a)>((long)INT_MAX)) {
+							printf("ERROR: Integer overflow!!!\n");
 			}
 			x = x * 10 + a;
 		}
@@ -73,12 +85,19 @@ int stringTOint(char str[]) {
 
 
 void intTObinaer(int i, char str[]) {
-	int x, rest;
+	int x, rest, grenze, a=1, b;
 
-	if(i > 32767 || i < -32768) {			// Überprüfen ob die Zahl zu groß ist
-		printf("ERROR: Die eingegebene Zahl ist zu groß um sie richtig als binaer Zahl anzuzeigen -- %i --\n"
-			   "       Bitte eine Zahl zwischen -32768 bis 32767 eingeben!!\n\n",x);
+	for(b=1; b<DIGITS; b++) {
+		a *= 2;
 	}
+	grenze = a -1;
+
+
+	if(i > grenze || i < ((grenze+1) * (-1))) {			// Überprüfen ob die Zahl zu groß ist
+		printf("ERROR: Die eingegebene Zahl ist zu groß um sie richtig als binaer Zahl anzuzeigen -- %i --\n"
+			   "       Bitte eine Zahl zwischen %i bis %i eingeben!!\n",i,((grenze+1) * (-1)),grenze);
+	}
+
 
 	if(i < 0) {									//Für Negative Zahlen
 		i *= -1;
@@ -88,7 +107,7 @@ void intTObinaer(int i, char str[]) {
 				rest = i % 2;
 				i = i / 2;
 
-				if(rest == 1) {
+				if(rest == 1) {					//Bit invertierung
 					rest = 0;
 				} else if(rest == 0) {
 					rest = 1;

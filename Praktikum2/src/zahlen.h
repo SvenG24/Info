@@ -14,10 +14,6 @@
  *  DIGITS lange Zeichenketten					*/
 #define DIGITS 16
 
-/** Konstant die zurück gegeben wird
- * 	wenn ein Fehler/Problem vorliegt			*/
-#define ERROR -1
-
 /** Verwandle ein ASCII char in die entsprechende
  *  Ganzzahl und gebe diese als Ergenis zurueck.*/
 int charTOint(char c);
