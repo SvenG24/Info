@@ -27,9 +27,10 @@ char intTOchar(int i) {
 
 	if (i <= 15 && i >= 0) { // Überprüfen ob die Eingabe gültig ist {0,1,...,15}
 		c = i + '0';
+		if(c > '9') c += 7;
 	} else {
 		printf("ERROR: Ungueltige Ganz Zahl(int) -- %d -- !\n", i);
-		return -1;
+		return 0;
 	}
 
 	return c;
@@ -41,7 +42,7 @@ int stringTOint(char str[]) {
 	if (str[0] == '-') {					//Prüfen ob die Zahl negativ ist
 		for (i = 1; str[i] != '\0' && i < DIGITS; i++) {
 			a = charTOint(str[i]);
-			if (a == -1) {
+			if (a == 0) {
 				return 0;
 			}
 
@@ -55,7 +56,7 @@ int stringTOint(char str[]) {
 	} else {								//sonst ist sie positiv
 		for (i = 0; str[i] != '\0' && i < DIGITS; i++) {
 			a = charTOint(str[i]);
-			if (a == -1) {
+			if (a == 0) {
 				return 0;
 			}
 
