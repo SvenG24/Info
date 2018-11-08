@@ -39,82 +39,69 @@ char intTOchar(int i) {
 }
 
 int stringTOint(char str[]) {
-	int i, a, x = 0;
+	int digit, x = 0;
 
 	if (str[0] == '-') {					//Prüfen ob die Zahl negativ ist
-		for (i = 1; str[i] != '\0' && i < DIGITS; i++) {
-			a = charTOint(str[i]);
-			if (a == -1) {
+		for (int i = 1; str[i] != '\0'; i++) {
+			if (str[i] < '0' || str[i] > '9') {
+				printf("ERROR: Ungueltiger String -- %s -- !\n", str);
 				return 0;
 			}
-
-			if (((long) (x * 10 + a)) >= INT_MAX) {
+			digit = charTOint(str[i]);
+			if (((long) (x * 10 + digit)) >= INT_MAX) {
 				printf("ERROR: Integer overflow!!!");
 			}
-			x = x * 10 + a;
-
+			x = x * 10 + digit;
 		}
 		x *= (-1);
 	} else {								//sonst ist sie positiv
-		for (i = 0; str[i] != '\0' && i < DIGITS; i++) {
-			a = charTOint(str[i]);
-			if (a == -1) {
+		for (int i = 0; str[i] != '\0'; i++) {
+			if (str[i] < '0' || str[i] > '9') {
+				printf("ERROR: Ungueltiger String -- %s -- !\n", str);
 				return 0;
 			}
-
-			if (((long) x * 10 + a) > ((long) INT_MAX)) {
-				printf("ERROR: Integer overflow!!!\n");
+			digit = charTOint(str[i]);
+			if (((long) (x * 10 + digit)) >= INT_MAX) {
+				printf("ERROR: Integer overflow!!!");
 			}
-			x = x * 10 + a;
+			x = x * 10 + digit;
 		}
 	}
 	return x;
 }
 
 void intTObinaer(int i, char str[]) {
-	int x, rest, grenze, a = 1, b;
+	int rest, grenze, a = 1;
 
-	for (b = 1; b < DIGITS; b++) {
+	for (int b = 1; b < DIGITS; b++) {
 		a *= 2;
 	}
 	grenze = a - 1;
 
 	if (i > grenze || i < ((grenze + 1) * (-1))) {// Überprüfen ob die Zahl zu groß ist
-		printf(
-				"ERROR: Die eingegebene Zahl ist zu groß um sie richtig als binaer Zahl anzuzeigen -- %i --\n"
-						"       Bitte eine Zahl zwischen %i bis %i eingeben!!\n",
-				i, ((grenze + 1) * (-1)), grenze);
+		printf("ERROR: Die eingegebene Zahl ist zu groß um sie richtig als binaer Zahl anzuzeigen -- %i --\n"
+			   "       Bitte eine Zahl zwischen %i bis %i eingeben!!\n", i, ((grenze + 1) * (-1)), grenze);
 	}
 
 	if (i < 0) {									//Für Negative Zahlen
 		i *= -1;
 		i--;
-		for (x = DIGITS - 1; x >= 0; x--) {
-			if (i != 0) {
+		for (int x = DIGITS - 1; x >= 0; x--) {
 				rest = i % 2;
 				i = i / 2;
-
 				if (rest == 1) {					//Bit invertierung
 					rest = 0;
 				} else if (rest == 0) {
 					rest = 1;
 				}
-
 				str[x] = intTOchar(rest);
-			} else {
-				str[x] = '1';
-			}
 		}
 		str[DIGITS] = '\0';
 	} else {									//Für Positive Zahlen
-		for (x = DIGITS - 1; x >= 0; x--) {
-			if (i != 0) {
+		for (int x = DIGITS - 1; x >= 0; x--) {
 				rest = i % 2;
 				i = i / 2;
 				str[x] = intTOchar(rest);
-			} else {
-				str[x] = '0';
-			}
 		}
 		str[DIGITS] = '\0';
 	}
