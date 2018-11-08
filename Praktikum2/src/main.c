@@ -19,6 +19,8 @@ int main(int argc, char* argv[]){
 		str = argv[1];
 	}
 
+	printf("%c\n", intTOchar(16));
+
 	/* 2) Zahl aus einer Zeichenkette berechnen. 							*/
 	x = stringTOint(str);
 	printf("Zeichenkette \"%s\" als int: %d\n",str,x);

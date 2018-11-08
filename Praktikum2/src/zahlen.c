@@ -27,7 +27,9 @@ char intTOchar(int i) {
 
 	if (i <= 15 && i >= 0) { // Überprüfen ob die Eingabe gültig ist {0,1,...,15}
 		c = i + '0';
-		if(c > '9') c += 7;
+		if(i > 9) {
+			c = (i -10) + 'A';
+		}
 	} else {
 		printf("ERROR: Ungueltige Ganz Zahl(int) -- %d -- !\n", i);
 		return 0;
