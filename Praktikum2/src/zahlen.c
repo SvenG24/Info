@@ -16,7 +16,7 @@ int charTOint(char c) {
 		i = c - '0';
 	} else {
 		printf("ERROR: Ungueltiges Zeichen(char) -- '%c' -- !\n", c);
-		return 0;
+		return -1;
 	}
 
 	return i;
@@ -44,7 +44,7 @@ int stringTOint(char str[]) {
 	if (str[0] == '-') {					//Prüfen ob die Zahl negativ ist
 		for (i = 1; str[i] != '\0' && i < DIGITS; i++) {
 			a = charTOint(str[i]);
-			if (a == 0) {
+			if (a == -1) {
 				return 0;
 			}
 
@@ -58,7 +58,7 @@ int stringTOint(char str[]) {
 	} else {								//sonst ist sie positiv
 		for (i = 0; str[i] != '\0' && i < DIGITS; i++) {
 			a = charTOint(str[i]);
-			if (a == 0) {
+			if (a == -1) {
 				return 0;
 			}
 
