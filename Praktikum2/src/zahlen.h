@@ -24,7 +24,7 @@ char intTOchar(int i);
 
 /** Bilde aus der Zeichenkette str eine Ganzzahl zur Basis 10
  *  und gebe diese als Ergebnis zurueck.		*/
-int stringTOint(char str[]);
+int stringTOint(char* str);
 
 /** Schreibt Binaerdarstellung der
  *  Ganzzahl i nach str.						*/
