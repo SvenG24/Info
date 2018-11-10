@@ -11,7 +11,7 @@
 int main(int argc, char* argv[]){
 	/** Puffer fuer eine Zahl als Zeichenkette, mit terminierender Null 	*/
 	char puffer[DIGITS+1];
-	char * str = "4711";
+	char* str = "4711";
 	int x;
 
 	/* 1) Optionales Kommandozeilenargument verwenden.						*/

@@ -39,19 +39,20 @@ char intTOchar(int i) {
 }
 
 int stringTOint(char str[]) {
-	int digit, x = 0;
+	int zahl, x = 0;
 
-	if (str[0] == '-') {					//Prüfen ob die Zahl negativ ist
-		for (int i = 1; str[i] != '\0'; i++) {
-			if (str[i] < '0' || str[i] > '9') {
+
+	if (*str == '-') {					//Prüfen ob die Zahl negativ ist
+		for(str++;*str != '\0';str++) {
+			if (*str < '0' || *str > '9') {
 				printf("ERROR: Ungueltiger String -- %s -- !\n", str);
 				return 0;
 			}
-			digit = charTOint(str[i]);
-			if (((long) (x * 10 + digit)) >= INT_MAX) {
-				printf("ERROR: Integer overflow!!!");
+			zahl = charTOint(*str);
+			if (((long)x * 10 + zahl) > INT_MAX) {
+				printf("ERROR: Integer overflow!!!\n");
 			}
-			x = x * 10 + digit;
+			x = x * 10 + zahl;
 		}
 		x *= (-1);
 	} else {								//sonst ist sie positiv
@@ -60,28 +61,28 @@ int stringTOint(char str[]) {
 				printf("ERROR: Ungueltiger String -- %s -- !\n", str);
 				return 0;
 			}
-			digit = charTOint(str[i]);
-			if (((long) (x * 10 + digit)) >= INT_MAX) {
-				printf("ERROR: Integer overflow!!!");
+			zahl = charTOint(str[i]);
+			if (((long)x * 10 + zahl) > INT_MAX) {
+				printf("ERROR: Integer overflow!!!\n");
 			}
-			x = x * 10 + digit;
+			x = x * 10 + zahl;
 		}
 	}
 	return x;
 }
 
 void intTObinaer(int i, char str[]) {
-	int rest, grenze, a = 1;
+	int rest, grenze = 1;
 
 	for (int b = 1; b < DIGITS; b++) {
-		a *= 2;
+		grenze *= 2;
 	}
-	grenze = a - 1;
-
+	grenze = grenze - 1;
 	if (i > grenze || i < ((grenze + 1) * (-1))) {// Überprüfen ob die Zahl zu groß ist
 		printf("ERROR: Die eingegebene Zahl ist zu groß um sie richtig als binaer Zahl anzuzeigen -- %i --\n"
 			   "       Bitte eine Zahl zwischen %i bis %i eingeben!!\n", i, ((grenze + 1) * (-1)), grenze);
 	}
+
 
 	if (i < 0) {									//Für Negative Zahlen
 		i *= -1;
@@ -89,11 +90,12 @@ void intTObinaer(int i, char str[]) {
 		for (int x = DIGITS - 1; x >= 0; x--) {
 				rest = i % 2;
 				i = i / 2;
-				if (rest == 1) {					//Bit invertierung
+				/*if (rest == 1) {					//Bit invertierung
 					rest = 0;
 				} else if (rest == 0) {
 					rest = 1;
-				}
+				}*/
+				rest = 1 - rest;
 				str[x] = intTOchar(rest);
 		}
 		str[DIGITS] = '\0';
