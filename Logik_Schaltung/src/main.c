@@ -33,6 +33,12 @@ int main() {
 
 
 
+
+	int i = 24;
+	char* p;
+	p = &i;
+	printf(" p = %p -- &p = %p -- *p = %d -- i = %d -- i_adr = %p",p,&p,*p,i,&i);
+
 	return 0;
 }
 

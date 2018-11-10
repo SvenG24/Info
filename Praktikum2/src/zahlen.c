@@ -83,23 +83,17 @@ void intTObinaer(int i, char str[]) {
 			   "       Bitte eine Zahl zwischen %i bis %i eingeben!!\n", i, ((grenze + 1) * (-1)), grenze);
 	}
 
-
 	if (i < 0) {									//Für Negative Zahlen
 		i *= -1;
 		i--;
 		for (int x = DIGITS - 1; x >= 0; x--) {
 				rest = i % 2;
 				i = i / 2;
-				/*if (rest == 1) {					//Bit invertierung
-					rest = 0;
-				} else if (rest == 0) {
-					rest = 1;
-				}*/
-				rest = 1 - rest;
+				rest = 1 - rest;					//Bit invertierung
 				str[x] = intTOchar(rest);
 		}
 		str[DIGITS] = '\0';
-	} else {									//Für Positive Zahlen
+	} else {										//Für Positive Zahlen
 		for (int x = DIGITS - 1; x >= 0; x--) {
 				rest = i % 2;
 				i = i / 2;
