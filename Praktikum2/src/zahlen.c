@@ -9,6 +9,9 @@
 #include <stdio.h>
 #include <limits.h>
 
+
+
+
 int charTOint(char c) {
 	int i;
 
@@ -21,6 +24,9 @@ int charTOint(char c) {
 
 	return i;
 }
+
+
+
 
 char intTOchar(int i) {
 	char c;
@@ -73,6 +79,8 @@ int stringTOint(char* str) {
 	}
 	return i;
 }
+
+
 
 
 
