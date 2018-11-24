@@ -108,3 +108,61 @@ void intTObinaer(int i, char str[]) {
 	}
 }
 
+
+
+
+
+
+int solve(int x, char operator, int y){
+	int z = 0;
+
+	switch(operator){
+	case '+':{
+		z = x + y;
+		break;
+	}
+	case '-':{
+		z = x - y;
+		break;
+	}
+	case '*':{
+		z = x * y;
+		break;
+	}
+	case '/':{
+		if(y != 0)z = x / y;
+		else printf("Durch Null darf nicht geteilt werden!!!!\n");
+		break;
+	}
+	case '&':{
+		z = x & y;
+		break;
+	}
+	case '|':{
+		z = x | y;
+		break;
+	}
+	case '<':{
+			z = x << y;
+			break;
+	}
+	case '>':{
+			z = x >> y;
+			break;
+	}
+	case '^':{
+			z = x ^ y;
+			break;
+	}
+	default:{
+		printf("Ungültiger Operator!!\n");
+		return 0;
+	}
+	}
+
+	return z;
+}
+
+
+
+

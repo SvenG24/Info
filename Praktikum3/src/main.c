@@ -7,59 +7,7 @@
 
 #include <stdio.h>
 #include "zahlen.h"
-
-
-int solve(int x, char operator, int y){
-	int z = 0;
-
-	switch(operator){
-	case '+':{
-		z = x + y;
-		break;
-	}
-	case '-':{
-		z = x - y;
-		break;
-	}
-	case '*':{
-		z = x * y;
-		break;
-	}
-	case '/':{
-		if(y != 0)z = x / y;
-		else printf("Durch Null darf nicht geteilt werden!!!!\n");
-		break;
-	}
-	case '&':{
-		z = x & y;
-		break;
-	}
-	case '|':{
-		z = x | y;
-		break;
-	}
-	case '<':{
-			z = x << y;
-			break;
-	}
-	case '>':{
-			z = x >> y;
-			break;
-	}
-	case '^':{
-			z = x ^ y;
-			break;
-	}
-	default:{
-		printf("Ungültiger Operator!!\n");
-		return 0;
-	}
-	}
-
-	return z;
-}
-
-
+#include "util.h"
 
 
 int main(int argc, char *argv[]) {
@@ -67,7 +15,7 @@ int main(int argc, char *argv[]) {
 	int x,y,z;
 
 	/* Übergebene Argumente auswerten*/
-	if (argc != 4){
+	if (argc < 4 || argc > 4){
 		printf("Falsche Eingabe: %s <x> <operator> <y> \n",argv[0]);
 		return 0;
 	}

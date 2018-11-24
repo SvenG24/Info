@@ -5,64 +5,8 @@
  *      Author: gi-user
  */
 #include <stdio.h>
+#include "util.h"
 
-
-int slen(char s[]) {
-	int length = 0;
-	if(s) {
-		while(s[length]){
-			length++;
-		}
-	}
-	return length;
-}
-
-
-int len(char s[]) {
-	int length = 0;
-	if(s) {
-		do {
-			if(s[length] != 0){
-				length++;
-			}
-		} while(s[length]);
-	}
-	return length;
-}
-
-
-void reverse(char str[]) {
-
-	int i=0,x=slen(str);
-
-	char start[x+1];
-	for(x--;x >= 0;x--){
-		start[i] = str[x];
-		i++;
-	}
-	start[i++] = 0;
-	for(i=0;str[i]!= '\0';i++){
-		str[i] = start[i];
-	}
-}
-
-
-
-int kgV(int a, int b){
-	int m=0, rest = 1;
-	while(rest != 0){
-		m++;
-		rest = (m*a)%b;
-	}
-	return (m*a);
-}
-
-int ggT(int a, int b){
-	int m,n;
-	m = kgV(a,b);
-	n = (a*b)/ m;
-	return n;
-}
 
 
 char LT[] = "is less";
@@ -144,7 +88,7 @@ int main() {
 
 	char str[] = "";
 	printf("Länge mit while:    %d\n",slen(str));
-	printf("Länge mit do-while: %d\n\n",len(str));
+	//printf("Länge mit do-while: %d\n\n",len(str));
 
 	printf("Vorher:  %s\n",str);
 	reverse(str);
@@ -160,8 +104,8 @@ int main() {
 	printf("ggT von %d und %d ist %d\n",g,h,ggT(g,h));
 
 
-
-	char *result;
+	char test[] = "hallo";
+	char *result = &test[0];
 
 	whatswrong(3,5,result);
 	printf("%s",result);

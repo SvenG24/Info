@@ -30,5 +30,9 @@ int stringTOint(char* str);
  *  Ganzzahl i nach str.						*/
 void intTObinaer(int i, char str[]);
 
+/**
+ * Verechnet zwei Zahlen a und b mit dem gewünschten operator.
+ */
+int solve(int a, char operator, int b);
 
 #endif /* ZAHLEN_H_ */
