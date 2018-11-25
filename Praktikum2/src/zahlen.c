@@ -60,7 +60,7 @@ int stringTOint(char* str) {
 				return 0;
 			}
 			i = i * 10 + charTOint(*str);
-			if (i < 0 && i > INT_MIN) {/*((long)x * 10 + zahl) > INT_MAX*/
+			if (i < 0 && i >= INT_MIN + 1) {/*((long)x * 10 + zahl) > INT_MAX*/
 				printf("ERROR: Integer overflow!!!\n");
 			}
 		}

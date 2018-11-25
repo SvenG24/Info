@@ -78,9 +78,9 @@ int stringTOint(char* str) {
 
 
 void intTObinaer(int i, char str[]) {
-	int rest, grenze = 1;
+	int rest, b, x, grenze = 1;
 
-	for (int b = 1; b < DIGITS; b++) {
+	for (b = 1; b < DIGITS; b++) {
 		grenze *= 2;
 	}
 	grenze = grenze - 1;
@@ -91,7 +91,7 @@ void intTObinaer(int i, char str[]) {
 
 	if (i < 0) {									/*Für Negative Zahlen*/
 		i = (i * (-1)) - 1;
-		for (int x = DIGITS - 1; x >= 0; x--) {
+		for (x = DIGITS - 1; x >= 0; x--) {
 				rest = i % 2;
 				i = i / 2;
 				rest = 1 - rest;					/*Bit invertierung*/
@@ -99,7 +99,7 @@ void intTObinaer(int i, char str[]) {
 		}
 		str[DIGITS] = '\0';
 	} else {										/*Für Positive Zahlen*/
-		for (int x = DIGITS - 1; x >= 0; x--) {
+		for (x = DIGITS - 1; x >= 0; x--) {
 				rest = i % 2;
 				i = i / 2;
 				str[x] = intTOchar(rest);
