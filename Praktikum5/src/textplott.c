@@ -90,16 +90,18 @@ void plot_Axes(){
 
 
 	for(i=0; i<COLS-1; i++){
-		if((i % (int)x_res) == 0 && i != (int)x_mid){
+		if((i % (int)x_res) == 0){
 			pic[(int)y_mid][i] = '+';
 			temp = -(i/x_res) - x_min;
-			if(temp < 0){
-				temp = temp * (-1) + 1;
-				pic[(int)y_mid+1][i-1] = '+';
-				pic[(int)y_mid+1][i] = temp + '0';
-			}else {
-				pic[(int)y_mid+1][i-1] = '-';
-				pic[(int)y_mid+1][i] = temp + '0';
+			if(temp >= 1  || temp < 0){
+				if(temp < 0){
+					temp = temp * (-1) + 1;
+					pic[(int)y_mid+1][i-1] = '+';
+					pic[(int)y_mid+1][i] = temp + '0';
+				}else {
+					pic[(int)y_mid+1][i-1] = '-';
+					pic[(int)y_mid+1][i] = temp + '0';
+				}
 			}
 		}else {
 			pic[(int)y_mid][i] = '-';
