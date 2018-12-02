@@ -44,7 +44,7 @@ char intTOchar(int i) {
 
 
 int stringTOint(char* str) {
-	int i = 0;
+	long i = 0;
 
 
 	if (*str == '-') {					/*Prüfen ob die Zahl negativ ist*/
@@ -54,7 +54,7 @@ int stringTOint(char* str) {
 				return 0;
 			}
 			i = i * 10 + charTOint(*str);
-			if (i < 0 && i > INT_MIN) {/*((long)x * 10 + zahl) > INT_MAX*/
+			if (i > INT_MAX) {/*((long)x * 10 + zahl) > INT_MAX*/
 				printf("ERROR: Integer overflow!!!\n");
 			}
 		}
@@ -66,12 +66,12 @@ int stringTOint(char* str) {
 				return 0;
 			}
 			i = i * 10 + charTOint(*str);
-			if (i < 0) {
+			if (i > INT_MAX) {
 				printf("ERROR: Integer overflow!!!\n");
 			}
 		}
 	}
-	return i;
+	return (int)i;
 }
 
 

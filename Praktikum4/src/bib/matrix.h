@@ -47,10 +47,5 @@ void matmulvec(int n,			/* dimensions of problem */
 		double* x, double* y,	/* left and right vectors */
 		double** A);			/* coefficients of matrix */
 
-/**
- * Zum testen der matrix.h funktionen für eine 3x3 Matrix
- */
-void matrixtest();
-
 
 #endif /* BIB_MATRIX_H_ */

@@ -9,9 +9,6 @@
 #include <stdio.h>
 #include <limits.h>
 
-
-
-
 int charTOint(char c) {
 	int i;
 
@@ -24,9 +21,6 @@ int charTOint(char c) {
 
 	return i;
 }
-
-
-
 
 char intTOchar(int i) {
 	char c;
@@ -50,7 +44,7 @@ char intTOchar(int i) {
 
 
 int stringTOint(char* str) {
-	int i = 0;
+	long i = 0;
 
 
 	if (*str == '-') {					/*Prüfen ob die Zahl negativ ist*/
@@ -60,7 +54,7 @@ int stringTOint(char* str) {
 				return 0;
 			}
 			i = i * 10 + charTOint(*str);
-			if (i < 0 && i >= INT_MIN + 1) {/*((long)x * 10 + zahl) > INT_MAX*/
+			if (i > INT_MAX) {/*((long)x * 10 + zahl) > INT_MAX*/
 				printf("ERROR: Integer overflow!!!\n");
 			}
 		}
@@ -72,23 +66,21 @@ int stringTOint(char* str) {
 				return 0;
 			}
 			i = i * 10 + charTOint(*str);
-			if (i < 0) {
+			if (i > INT_MAX) {
 				printf("ERROR: Integer overflow!!!\n");
 			}
 		}
 	}
-	return i;
+	return (int)i;
 }
 
 
 
 
-
-
 void intTObinaer(int i, char str[]) {
-	int rest, grenze = 1;
+	int rest, b, x, grenze = 1;
 
-	for (int b = 1; b < DIGITS; b++) {
+	for (b = 1; b < DIGITS; b++) {
 		grenze *= 2;
 	}
 	grenze = grenze - 1;
@@ -99,7 +91,7 @@ void intTObinaer(int i, char str[]) {
 
 	if (i < 0) {									/*Für Negative Zahlen*/
 		i = (i * (-1)) - 1;
-		for (int x = DIGITS - 1; x >= 0; x--) {
+		for (x = DIGITS - 1; x >= 0; x--) {
 				rest = i % 2;
 				i = i / 2;
 				rest = 1 - rest;					/*Bit invertierung*/
@@ -107,7 +99,7 @@ void intTObinaer(int i, char str[]) {
 		}
 		str[DIGITS] = '\0';
 	} else {										/*Für Positive Zahlen*/
-		for (int x = DIGITS - 1; x >= 0; x--) {
+		for (x = DIGITS - 1; x >= 0; x--) {
 				rest = i % 2;
 				i = i / 2;
 				str[x] = intTOchar(rest);
@@ -115,4 +107,62 @@ void intTObinaer(int i, char str[]) {
 		str[DIGITS] = '\0';
 	}
 }
+
+
+
+
+
+
+int solve(int x, char operator, int y){
+	int z = 0;
+
+	switch(operator){
+	case '+':{
+		z = x + y;
+		break;
+	}
+	case '-':{
+		z = x - y;
+		break;
+	}
+	case '*':{
+		z = x * y;
+		break;
+	}
+	case '/':{
+		if(y != 0)z = x / y;
+		else printf("Durch Null darf nicht geteilt werden!!!!\n");
+		break;
+	}
+	case '&':{
+		z = x & y;
+		break;
+	}
+	case '|':{
+		z = x | y;
+		break;
+	}
+	case '<':{
+			z = x << y;
+			break;
+	}
+	case '>':{
+			z = x >> y;
+			break;
+	}
+	case '^':{
+			z = x ^ y;
+			break;
+	}
+	default:{
+		printf("Ungültiger Operator!!\n");
+		return 0;
+	}
+	}
+
+	return z;
+}
+
+
+
 
