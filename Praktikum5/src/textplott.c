@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include "textplott.h"
 
+
 void addFunction(Function f){
 	int i;
 	double x, y, temp;
@@ -15,7 +16,7 @@ void addFunction(Function f){
 		x = (i / x_res) + x_min;
 		y = f(x);
 		temp = (-y+y_max) * y_res;
-		if(temp < 0 || i < 0){
+		if(temp < 0 || i < 0 || temp >= ROWS){
 			printf("Außerhalb des Bereiches\n");
 			return;
 		}
@@ -93,7 +94,7 @@ void plot_Axes(){
 		if((i % (int)x_res) == 0){
 			pic[(int)y_mid][i] = '+';
 			temp = -(i/x_res) - x_min;
-			if(temp >= 1  || temp < 0){
+			if(temp >= 1 || temp <= -1){
 				if(temp < 0){
 					temp = temp * (-1) + 1;
 					pic[(int)y_mid+1][i-1] = '+';
@@ -109,6 +110,7 @@ void plot_Axes(){
 	}
 	pic[(int)y_mid][i++] = '>';
 }
+
 
 
 

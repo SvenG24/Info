@@ -34,6 +34,7 @@ void reverse(char str[]) {
 
 int kgV(int a, int b){
 	int m=0, rest = 1;
+	if(a<0 || b<0)return 0;
 	while(rest != 0){
 		m++;
 		rest = (m*a)%b;

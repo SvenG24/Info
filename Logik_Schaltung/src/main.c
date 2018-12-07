@@ -13,34 +13,22 @@ char LT[] = "is less";
 char GT[] = "is greater";
 char EQ[] = "equals";
 char UNKOWN[] = "ERROR";
+char *result;
 
 
-void whatswrong(double x, double y, char temp[]){
-	//char *result;
+void whatswrong(double x, double y){
+
 
 	if(x>y){
-		temp = &LT[0];
+		result = &LT[0];
 	} else if(x<y) {
-		temp = &GT[0];
+		result = &GT[0];
 	}else if(x==y){
-		temp = &EQ[0];
+		result = &EQ[0];
 	}else{
-		temp = &UNKOWN[0];
+		result = &UNKOWN[0];
 	}
-	/*
-	switch(x,y){
-	case x>y:
-		result = LT;
-		break;
-	case x<y:
-		result = GT;
-		break;
-	case x==y:
-		result = EQ;
-		break;
-	default:
-		result = UNKOWN;
-	}*/
+
 	return;
 }
 
@@ -52,6 +40,11 @@ void whatswrong(double x, double y, char temp[]){
 
 
 int main() {
+
+	whatswrong(2.0,3.0);
+	printf("%s\n",result);
+
+
 	int a,b,c,x,y,z;
 
 	printf(" a | b | c |  | x | y | z\n");
@@ -107,10 +100,10 @@ int main() {
 	char test[] = "hallo";
 	char *result = &test[0];
 
-	whatswrong(3,5,result);
+	//whatswrong(3,5,result);
 	printf("%s",result);
 
-
+	printf("\n %d", kgV(0,5));
 	return 0;
 }
 

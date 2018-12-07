@@ -8,6 +8,7 @@
 #ifndef BIB_MATRIX_H_
 #define BIB_MATRIX_H_
 
+
 /**
 ∗ Addition of vector x with vector y,
 ∗ returning the result in vector z=x+y.

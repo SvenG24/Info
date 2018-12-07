@@ -60,30 +60,33 @@ void sortTest(){
 	}
 }
 
-void nullstelle(){
-	double a, e,dif, x_0=0, x_n=0;
-	/* f(x) = x² - a)
-	 * f'(x) = 2x
-	 */
-	e = 0.001;
-	dif = e;
-	a = 2.236067977;
-	x_0 = a;
 
-	while(dif >= e){
-		x_n = x_0 - ((x_0*x_0 - a)/(2*x_0));
-		dif = x_n - x_0;
-		x_0 = x_n;
-		if(dif < 0){dif *= (-1);}
-	}
-	printf("Nullstelle ist %5.2f",x_n);
+
+
+#define dabs(x) (x)<0? -(x) : (x)
+
+double iterate(double x_0, double eps, unsigned int nmax){
+	double delta, x_k_1, x_k = x_0;
+	unsigned int k=0;
+	do{
+		x_k_1 = x_k;
+
+		x_k = x_k_1 - ((x_k_1 * x_k_1) - x_0) / (2 * x_k_1);
+
+		delta = dabs(x_k - x_k_1);
+	}while(delta > eps && ++k < nmax);
+	if(k>=nmax)printf("no convergence");
+	return x_k;
 }
+
+
+
+
 
 int main(){
 
 	//pointerTest();
 	//sortTest();
-	nullstelle();
-
+	printf("%.12f", iterate(5,0.000001,5000));
 	return 0;
 }
