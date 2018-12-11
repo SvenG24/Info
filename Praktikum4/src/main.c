@@ -15,7 +15,7 @@ int main(){
 	double x[] = { 1, 2, 4 };
 	double y[] = { 3, 5 ,6 };
 	double z[] = { 0, 0, 0 };
-	double z2[] = { 0, 0, 0 };
+	double w[] = { 0, 0, 0 };
 
 	double a1[] = { 0.5, -1.0, -1.0 };
 	double a2[] = { -1.0, 1.0, 2.0 };
@@ -34,6 +34,8 @@ int main(){
 	double *C[] = { c1, c2, c3 };
 
 	char plus,gleich;
+
+
 	/* Vektor plus Vektor */
 	vecplus(n, x, y, z);
 	printf("Vektor + Vektor:\n");
@@ -44,8 +46,13 @@ int main(){
 	}
 	printf("\n");
 
+
+
 	/* Skalarprodukt */
 	printf("Skalarprodukt: \nx*y = %5.2f\n\n", vecmult(n, x, y));
+
+
+
 
 	/* Matrix plus Matrix */
 	matplus(n, A, B, C);
@@ -58,13 +65,17 @@ int main(){
 	}
 	printf("\n");
 
+
+
 	/* Matrix mal Vektor */
-	matmulvec(n, x, z2, C);
+	matmulvec(n, x, w, C);
 	printf("Matrix x Vektor:\n");
 	for (i = 0; i < n; i++) {
-		printf("c[%d] = %5.2f\n", i, z2[i]);
+		printf("c[%d] = %5.2f\n", i, w[i]);
 	}
 	printf("\n");
+
+
 
 	/* Matrix mal Matrix */
 	matmult(n, A, B, C);
