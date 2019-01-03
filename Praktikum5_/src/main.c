@@ -8,26 +8,25 @@
 #include "matrix.h"
 
 
-void matTest(int n, double** A, int k, double** B, double** C){
+void matTest(int n, double** A, int k, double** B, double** T, double** C){
 	int cmp1,cmp2,cmp3,i,j;
 
 	matpowI(n,A,k,B,C);
-	matcopy(n,C,B);
+	matcopy(n,C,T);
 	matpowR(n,A,k,B,C);
-	cmp1 = matcmp(n,B,C);		/*Vergleiche die Ergebnisse der Iterativen und Rekursiven Version*/
+	cmp1 = matcmp(n,T,C);		/*Vergleiche die Ergebnisse der Iterativen und Rekursiven Version*/
 
-	matcopy(n,C,B);
+	matcopy(n,C,T);
 	matpow(n,A,k,B,C);
-	cmp2 = matcmp(n,B,C);		/*Vergleiche die Ergebnisse der Rekursiven und optimierten Version*/
+	cmp2 = matcmp(n,T,C);		/*Vergleiche die Ergebnisse der Rekursiven und optimierten Version*/
 
-	matcopy(n,C,B);
+	matcopy(n,C,T);
 	matpowI(n,A,k,B,C);
-	cmp3 = matcmp(n,B,C);		/*Vergleiche die Ergebnisse der Iterativen und optimierten Version*/
+	cmp3 = matcmp(n,T,C);		/*Vergleiche die Ergebnisse der Iterativen und optimierten Version*/
 
 
 	if(cmp1 == 1 && cmp2 == 1 && cmp3 == 1)printf("Alle FUnktion liefern das gleiche Ergebnis\n");
-	if(cmp1 == 0 || cmp2 == 0 || cmp3 == 0)printf("FEHLER: Die Funktionen liefern unterschiedliche Ergebnisse\n");
-
+	if(cmp1 == 0 || cmp2 == 0 || cmp3 == 0)printf("FEHLER: Die Funktionen liefern unterschiedliche Ergebnisse %d %d %d\n",cmp1,cmp2,cmp3);
 
 	for(i=0;i<n;i++){
 		for(j=0;j<n;j++){
@@ -62,10 +61,16 @@ int main(){
 	double c4[] = { 0.0, 0.0, 0.0, 0.0, 0.0 };
 	double c5[] = { 0.0, 0.0, 0.0, 0.0, 0.0 };
 
+	double t1[] = { 0.0, 0.0, 0.0, 0.0, 0.0 };
+	double t2[] = { 0.0, 0.0, 0.0, 0.0, 0.0 };
+	double t3[] = { 0.0, 0.0, 0.0, 0.0, 0.0 };
+	double t4[] = { 0.0, 0.0, 0.0, 0.0, 0.0 };
+	double t5[] = { 0.0, 0.0, 0.0, 0.0, 0.0 };
+
 	double *A[] = { a1, a2, a3 };
 	double *B[] = { b1, b2, b3, b4, b5 };
 	double *C[] = { c1, c2, c3, c4, c5 };
-
+	double *T[] = { t1, t2, t3, t4, t5 };
 
 
 
@@ -101,19 +106,19 @@ int main(){
 
 
 	printf("Matrix A aus dem Praktikum 4\n");
-	matTest(n,A,k,B,C);
+	matTest(n,A,k,B,T,C);
 
 	printf("Matrix 1\n");
-	matTest(n1,D,k1,B,C);
+	matTest(n1,D,k1,B,T,C);
 
 	printf("Matrix 2\n");
-	matTest(n2,E,k2,B,C);
+	matTest(n2,E,k2,B,T,C);
 
 	printf("Matrix 3\n");
 	k3=0;
 	while(k3 < 6){
 		k3++;
-		matTest(n3,F,k3,B,C);
+		matTest(n3,F,k3,B,T,C);
 	}
 
 

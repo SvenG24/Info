@@ -133,7 +133,7 @@ void matpow(int n, double** A,	unsigned int k,	double** B, double** C){
 		matmult(n, C, C, B);
 		matcopy(n, B, C);
 	}
-	else if(k%2){
+	else if(k%2 == 1){
 		matpow(n, A, k/2, B, C);
 		matmult(n, C, C, B);
 		matmult(n, B, A, C);
