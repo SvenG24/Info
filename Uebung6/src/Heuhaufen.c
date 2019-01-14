@@ -8,7 +8,8 @@
 #include <stdio.h>
 
 int strsearch(char *heystack, char *needle){
-	int x = 0,i,k = 0;
+	int x = -1,i,k = 0;
+	if(heystack == 0 && needle == 0)return -1;
 
 	for(i=0;heystack[i] != 0;i++){
 		if(heystack[i] == needle[k]){
@@ -41,10 +42,12 @@ int strsearch(char *heystack, char *needle){
 
 
 int strsearch_(char *heystack, char *needle){
-	int x = 0,i;
+	int x = -1,i;
+	if(heystack == 0 && needle == 0)return -1;
+
 
 	for(i=0;heystack[i] != 0;i++){
-		if(strncmp(heystack+i,needle,strlen(needle)) == 0){
+		if(strncmp(heystack+i,needle,strlen(needle)) == 0 && needle[0] != 0){
 			return i+1;
 		}
 		else{

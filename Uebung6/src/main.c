@@ -65,8 +65,8 @@ int main(){
  *
  */
 
-	char *heystack = "12345HalloS123Sven123Test";
-	char *needle = "Sven";
+	char *heystack = "12345HalloS123Test0123Tt";
+	char *needle = "Test";
 	int x = strsearch(heystack, needle);
 	printf("\nHeystack. %s\nNeedle: %s\nPosition: %d\n",heystack,needle,x);
 
